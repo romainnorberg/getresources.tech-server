@@ -2,10 +2,9 @@
 
 module.exports = (app) => {
 
-    app.get('/', (req, res) => {
+    app.get('/server', (req, res) => {
         res.render("layout", {});
 
         res.end();
-
     });
 };

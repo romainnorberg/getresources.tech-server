@@ -1,0 +1,11 @@
+{
+  "apps": [
+    {
+      "app_id": "app_6d6f85f6-777c-46b6-be0c-0f373caf31de",
+      "deploy_url": "https://github.com/romainnorberg/getresources.tech-server.git",
+      "name": "getresources.tech (staging) / nodejs",
+      "alias": "getresources-tech-staging-nodejs"
+    }
+  ]
+}
+

@@ -1,0 +1,18 @@
+# Files
+
+.DS_Store
+.ruby-version
+.env
+npm-debug.log
+newrelic_agent.log
+
+# Folders
+
+.idea/
+.sass-cache
+_gh_pages
+_site
+node_modules
+
+# Run
+dump.rdb

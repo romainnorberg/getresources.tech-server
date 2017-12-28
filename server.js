@@ -47,10 +47,12 @@ if (process.env.NODE_ENV === 'production') {
 
 // routes
 require('./app/routes')(app);
+const search = require('./app/modules/search');
 
 // io
 io.on('connection', function (socket) {
-    require('./app/modules/search')(app, io, socket);
+    console.log('connection');
+    search(app, io, socket);
 });
 
 server.listen(process.env.PORT, process.env.LISTEN, () => {

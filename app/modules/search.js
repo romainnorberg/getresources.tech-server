@@ -6,6 +6,8 @@ module.exports = (app, io, socket) => {
     // On search
     socket.on('search', function (searchParameters) {
 
+        console.log('search');
+
         // Empty
         if (!searchParameters.q) {
             return;

@@ -2,7 +2,7 @@
 
 const algolia = require('../../config/algolia');
 
-module.exports = (app, io, socket) => {
+module.exports = (io, socket) => {
     // On search
     socket.on('search', function (searchParameters) {
 

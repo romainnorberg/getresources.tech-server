@@ -22,6 +22,12 @@ function handler(req, res) {
 
 // io
 io.on('connection', function (socket) {
-    console.log('connection');
-    search(io, socket);
+    console.log('connection (' + socket.id + ')');
+    search.search(io, socket);
+
+    socket.on('disconnect', () => {
+        console.log('disconnect (' + socket.id + ')');
+        delete io.sockets[socket.id];
+        delete io.sockets.sockets[socket.id];
+    });
 });

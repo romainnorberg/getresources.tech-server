@@ -1,6 +1,7 @@
 "use strict";
 
 const algolia = require('../../config/algolia');
+const concat = require('array-concat');
 
 exports.search = (io, socket) => {
     // On search
@@ -15,17 +16,21 @@ exports.search = (io, socket) => {
 
         // Create search query
         let query = {};
-        query.tags = '';
+        query.filtersFlat = 'isValidated=1';
+        query.filtersFacet = [];
 
+        // Merge search filters
         if (searchParameters.q) {
             query.name = searchParameters.q;
         }
 
-        if (searchParameters.tags) {
-            query.tags = searchParameters.tags;
+        // tags
+        if (searchParameters.tags.length) {
+            query.filtersFacet = concat(query.filtersFacet, searchParameters.tags);
 
-            query.tags = query.tags.map(i => i.facet + ':' + i.label); // preprend with 'facet:label'
-            query.tags = query.tags.join(' AND '); // join with separator. example: 'tags:expressjs AND tags:bootstrap'
+            // join filters
+            query.filtersFacet = query.filtersFacet.map(i => i.facet + ':' + i.label); // preprend with 'facet:label'
+            query.filtersFacet = query.filtersFacet.join(' AND '); // join with separator. example: 'tags:expressjs AND tags:bootstrap'
         }
 
         // Init Algolia index
@@ -34,7 +39,8 @@ exports.search = (io, socket) => {
         // Algolia search
         sitesIndex
             .search(query.name, {
-                filters: query.tags
+                filters: query.filtersFlat,
+                facetFilters: query.filtersFacet
             })
             .then(function (content) {
                 let data = {};

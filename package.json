@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "algoliasearch": "^3.24.5",
+    "array-concat": "^0.1.1",
     "dotenv": "^4.0.0",
     "newrelic": "^2.3.1",
     "socket.io": "^2.0.4"
